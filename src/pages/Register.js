@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import '../styles/RegisterStyles.css';
 
 function Register() {
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
 
   const signupFn = async (e) => {
@@ -17,8 +17,12 @@ function Register() {
       email: userEmail,
       password: password,
     };
-    let data = await axios.post("http://localhost:8080/crm/api/v1/auth/signup", body);
-    console.log("Data is " + JSON.stringify(data));
+    try{
+      let data = await axios.post("http://localhost:8080/crm/api/v1/auth/signup", body);
+          console.log("Data is " + JSON.stringify(data));
+      }catch(err){
+      console.log(err)
+      }
   };
 
 
